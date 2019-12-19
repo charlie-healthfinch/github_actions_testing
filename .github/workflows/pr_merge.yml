@@ -21,15 +21,12 @@ jobs:
     - name: Cache bundle install
       uses: actions/cache@v1
       with:
-        path: ~/.bundle 
-        key: ${{ runner.os }}-bundler-${{ hashFiles('**/*.gemspec') }}
+        path: vendor/bundle
+        key: ${{ runner.os }}-gem-${{ hashFiles('**/*.gemspec') }}
         restore-keys: |
-          ${{ runner.os }}-bundler-${{ env.cache-name }}-
-          ${{ runner.os }}-bundler-
-          ${{ runner.os }}-
+          ${{ runner.os }}-gem-
     - name: Bundle install
       run: |
-        gem install bundler
+        bundle config path vendor/bundle
         bundle install --jobs 4 --retry 3
-    - name: Build and test with Rake
       run: bundle exec rake
