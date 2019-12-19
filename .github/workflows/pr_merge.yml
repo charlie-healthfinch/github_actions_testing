@@ -1,11 +1,11 @@
-name: Ruby
+name: PR Merge
 
 on:
   push:
     branches:
-    - master
-    - paths-ignore:
-        - '**/version.rb'
+      - master
+    paths-ignore:
+      - '**/version.rb'
 
 jobs:
   build:
