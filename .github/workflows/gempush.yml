@@ -3,7 +3,7 @@ name: Ruby Gem
 on:
   push:
     paths:
-    - 'lib/github_testing_actions/version.rb'
+    - '**/version.rb'
 
 jobs:
   build:
