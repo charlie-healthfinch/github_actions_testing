@@ -1,6 +1,9 @@
-name: PR
+name: PR Checks
 
-on: [push]
+on:
+  push:
+    branches-ignore:
+      - master
 
 jobs:
   build:
