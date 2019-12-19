@@ -1,7 +1,9 @@
 name: Ruby Gem
 
 on:
-  merge:
+  push:
+    branches:
+    - master
     paths:
     - '**/version.rb'
 
