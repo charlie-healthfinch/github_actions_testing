@@ -16,8 +16,18 @@ jobs:
       uses: actions/setup-ruby@v1
       with:
         ruby-version: 2.6.x
-    - name: Build and test with Rake
+    - name: Cache bundle install
+      uses: actions/cache@v1
+      with:
+        path: ~/.bundle
+        key: ${{ runner.os }}-bundler-${{ hashFiles('**/*.gemspec') }}
+        restore-keys: |
+          ${{ runner.os }}-bundler-${{ env.cache-name }}-
+          ${{ runner.os }}-bundler-
+          ${{ runner.os }}-
+    - name: Bundle install
       run: |
         gem install bundler
         bundle install --jobs 4 --retry 3
-        bundle exec rake
+    - name: Test
+      run: bundle exec rake
